@@ -1,0 +1,29 @@
+
+name: simple-ci-cd
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with: 
+        node-version: "16.x"
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run test
+      run: npm test
+    
